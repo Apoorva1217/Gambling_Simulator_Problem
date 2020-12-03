@@ -12,6 +12,10 @@ namespace GamblingSimulatorProblem
         public const int DAY = 0;
         public int startstake = STARTSTAKE;
         Random random = new Random();
+        int numberOfWins = 0;
+        int numberOfLoss = 0;
+        int stakeValue = STARTSTAKE * 50 / 100;
+
 
         /// <summary>
         /// UC2 win or loose
@@ -31,20 +35,49 @@ namespace GamblingSimulatorProblem
         /// </summary>
         public void ResignStake()
         {
-            int stakeValue = STARTSTAKE * 50 / 100;
-            while (startstake > (startstake - stakeValue) && (startstake < (startstake + stakeValue)))
+            for (int i = 0; i < 20; i++)
             {
-                int win = random.Next(0, 2);
-                if (win == 1)
+                while (startstake > (startstake - stakeValue) && (startstake < (startstake + stakeValue)))
                 {
-                    startstake += 1;
+                    int win = random.Next(0, 2);
+                    if (win == 1)
+                    {
+                        startstake += 1;
+                        numberOfWins++;
+                    }
+                    else
+                    {
+                        startstake -= 1;
+                        numberOfLoss++;
+                    }
+                }
+                if (numberOfWins > numberOfLoss)
+                {
+                    numberOfWins++;
                 }
                 else
                 {
-                    startstake -= 1;
+                    numberOfLoss++;
                 }
+                Console.WriteLine("You have done the bet for day:" + startstake);
             }
-            Console.WriteLine("You have done the bet for day:" + startstake);
+        }
+
+        /// <summary>
+        /// UC4 After 20 days of playing every day would like to know total amount win or loose
+        /// </summary>
+        public void GetAmountCalculate()
+        {
+            if (numberOfWins > numberOfLoss)
+            {
+                int result = numberOfWins * stakeValue;
+                Console.WriteLine("Amount won:" + result);
+            }
+            else
+            {
+                int result = numberOfLoss * stakeValue;
+                Console.WriteLine("Amount loss:" + result);
+            }
         }
     }
 }

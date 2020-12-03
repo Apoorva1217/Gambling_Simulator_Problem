@@ -8,8 +8,9 @@ namespace GamblingSimulatorProblem
         {
             Console.WriteLine("Welcome to Gambling Simulator Problem!");
             Gambling gambling = new Gambling();
-            //gambling.GetBetWinOrLoose();
+            gambling.GetBetWinOrLoose();
             gambling.ResignStake();
+            gambling.GetAmountCalculate();
         }
     }
 }
