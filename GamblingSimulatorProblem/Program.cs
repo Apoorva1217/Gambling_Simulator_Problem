@@ -7,11 +7,8 @@ namespace GamblingSimulatorProblem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Gambling Simulator Problem!");
-
-            ///UC1 Start Stake and bet
-            const int BET = 1;
-            const int STARTSTAKE = 100;
-            const int DAY = 0;
+            Gambling gambling = new Gambling();
+            gambling.GetBetWinOrLoose();
         }
     }
 }
